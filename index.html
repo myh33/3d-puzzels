@@ -97,6 +97,389 @@
             width: 100%;
         }
 
+        .cart-link {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 500px;
+            height: 100vh;
+            background: white;
+            z-index: 2000;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+            transition: right 0.4s ease;
+            overflow-y: auto;
+        }
+
+        .cart-modal.active {
+            right: 0;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.7);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-header {
+            padding: 2rem;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .cart-items {
+            padding: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .cart-item-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .cart-item-remove {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .cart-item-remove:hover {
+            background: #d63850;
+            transform: scale(1.05);
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #999;
+        }
+
+        .cart-empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .cart-summary {
+            padding: 2rem;
+            border-top: 2px solid var(--light);
+            background: white;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .checkout-button {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--gold);
+            color: var(--primary);
+            border: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-button:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Checkout Modal */
+        .checkout-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.9);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .checkout-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .checkout-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .checkout-header {
+            padding: 2rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .checkout-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+        }
+
+        .checkout-body {
+            padding: 2rem;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--light);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Raleway', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .payment-option {
+            display: none;
+        }
+
+        .payment-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem;
+            border: 2px solid var(--light);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            gap: 0.5rem;
+        }
+
+        .payment-option:checked + .payment-label {
+            border-color: var(--gold);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .payment-label:hover {
+            border-color: var(--gold);
+        }
+
+        .payment-icon {
+            font-size: 1.5rem;
+        }
+
+        .order-summary {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid rgba(0,0,0,0.1);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .place-order-button {
+            width: 100%;
+            padding: 1.3rem;
+            background: var(--gold);
+            color: var(--primary);
+            border: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1.5px;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .place-order-button:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .secure-badge {
+            text-align: center;
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
         /* Hero Section */
         .hero {
             margin-top: 80px;
@@ -492,6 +875,9 @@
                 <li><a href="#collectie">Collectie</a></li>
                 <li><a href="#over">Over Ons</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="cart-link" onclick="openCart(); return false;">
+                    🛒 Winkelwagen <span class="cart-count" id="cartCount">0</span>
+                </a></li>
             </ul>
         </nav>
     </header>
@@ -614,6 +1000,137 @@
         </div>
     </section>
 
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2>Winkelwagen</h2>
+            <button class="cart-close" onclick="closeCart()">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">
+                <div class="cart-empty-icon">🛒</div>
+                <p>Je winkelwagen is leeg</p>
+            </div>
+        </div>
+        <div class="cart-summary" id="cartSummary" style="display: none;">
+            <div class="cart-total">
+                <span>Totaal</span>
+                <span id="cartTotal">€0,00</span>
+            </div>
+            <button class="checkout-button" onclick="openCheckout()">Afrekenen</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-content">
+            <div class="checkout-header">
+                <h2>Afrekenen</h2>
+            </div>
+            <div class="checkout-body">
+                <!-- Shipping Address -->
+                <div class="form-section">
+                    <h3>📦 Verzendadres</h3>
+                    <div class="form-group">
+                        <label class="form-label">Volledige Naam</label>
+                        <input type="text" class="form-input" id="fullName" placeholder="Voor- en achternaam" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" id="email" placeholder="jouw@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Telefoonnummer</label>
+                        <input type="tel" class="form-input" id="phone" placeholder="+31 6 12345678" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Straat en Huisnummer</label>
+                        <input type="text" class="form-input" id="address" placeholder="Straatnaam 123" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Postcode</label>
+                            <input type="text" class="form-input" id="zipcode" placeholder="1234 AB" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Plaats</label>
+                            <input type="text" class="form-input" id="city" placeholder="Amsterdam" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Land</label>
+                        <select class="form-select" id="country" required>
+                            <option value="NL">Nederland</option>
+                            <option value="BE">België</option>
+                            <option value="DE">Duitsland</option>
+                            <option value="FR">Frankrijk</option>
+                            <option value="UK">Verenigd Koninkrijk</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="form-section">
+                    <h3>💳 Betaalmethode</h3>
+                    <div class="payment-methods">
+                        <div>
+                            <input type="radio" name="payment" value="ideal" id="ideal" class="payment-option" checked>
+                            <label for="ideal" class="payment-label">
+                                <span class="payment-icon">🏦</span>
+                                <span>iDEAL</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" name="payment" value="card" id="card" class="payment-option">
+                            <label for="card" class="payment-label">
+                                <span class="payment-icon">💳</span>
+                                <span>Creditcard</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" name="payment" value="paypal" id="paypal" class="payment-option">
+                            <label for="paypal" class="payment-label">
+                                <span class="payment-icon">🅿️</span>
+                                <span>PayPal</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" name="payment" value="applepay" id="applepay" class="payment-option">
+                            <label for="applepay" class="payment-label">
+                                <span class="payment-icon">🍎</span>
+                                <span>Apple Pay</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h3 style="margin-bottom: 1rem;">Bestelling</h3>
+                    <div id="orderItems"></div>
+                    <div class="summary-row">
+                        <span>Subtotaal</span>
+                        <span id="orderSubtotal">€0,00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Verzendkosten</span>
+                        <span>Gratis</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Totaal</span>
+                        <span id="orderTotal">€0,00</span>
+                    </div>
+                </div>
+
+                <button class="place-order-button" onclick="placeOrder()">Bestelling Plaatsen</button>
+                <div class="secure-badge">🔒 Veilige betaling via SSL-encryptie</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer id="contact">
         <div class="footer-content">
@@ -655,30 +1172,190 @@
     </footer>
 
     <script>
+        // Products data
+        const products = [
+            {
+                id: 1,
+                name: 'Pikachu 3D Puzzel',
+                price: 249,
+                image: 'Gemini_Generated_Image_jheolmjheolmjheo.png'
+            },
+            {
+                id: 2,
+                name: 'Charmander 3D Puzzel',
+                price: 249,
+                image: 'Gemini_Generated_Image_jheolmjheolmjheo.png'
+            },
+            {
+                id: 3,
+                name: 'Charizard 3D Puzzel',
+                price: 300,
+                image: 'Gemini_Generated_Image_2bmfnz2bmfnz2bmf.png'
+            }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('puzzleCart')) || [];
+
+        // Update cart count
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            cart.push(product);
+            localStorage.setItem('puzzleCart', JSON.stringify(cart));
+            updateCartCount();
+            renderCart();
+            
+            // Show notification
+            alert(`${product.name} toegevoegd aan winkelwagen!`);
+        }
+
+        // Remove from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('puzzleCart', JSON.stringify(cart));
+            updateCartCount();
+            renderCart();
+        }
+
+        // Render cart
+        function renderCart() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartSummary = document.getElementById('cartSummary');
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="cart-empty">
+                        <div class="cart-empty-icon">🛒</div>
+                        <p>Je winkelwagen is leeg</p>
+                    </div>
+                `;
+                cartSummary.style.display = 'none';
+                return;
+            }
+
+            cartItemsContainer.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">€${item.price},00</div>
+                    </div>
+                    <button class="cart-item-remove" onclick="removeFromCart(${index})">×</button>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('cartTotal').textContent = `€${total},00`;
+            cartSummary.style.display = 'block';
+        }
+
+        // Open cart
+        function openCart() {
+            document.getElementById('cartModal').classList.add('active');
+            document.getElementById('cartOverlay').classList.add('active');
+            renderCart();
+        }
+
+        // Close cart
+        function closeCart() {
+            document.getElementById('cartModal').classList.remove('active');
+            document.getElementById('cartOverlay').classList.remove('active');
+        }
+
+        // Open checkout
+        function openCheckout() {
+            if (cart.length === 0) {
+                alert('Je winkelwagen is leeg!');
+                return;
+            }
+
+            closeCart();
+            document.getElementById('checkoutModal').classList.add('active');
+            
+            // Render order items
+            const orderItemsContainer = document.getElementById('orderItems');
+            orderItemsContainer.innerHTML = cart.map(item => `
+                <div class="summary-row">
+                    <span>${item.name}</span>
+                    <span>€${item.price},00</span>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('orderSubtotal').textContent = `€${total},00`;
+            document.getElementById('orderTotal').textContent = `€${total},00`;
+        }
+
+        // Close checkout
+        function closeCheckout() {
+            document.getElementById('checkoutModal').classList.remove('active');
+        }
+
+        // Place order
+        function placeOrder() {
+            // Validate form
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const zipcode = document.getElementById('zipcode').value;
+            const city = document.getElementById('city').value;
+
+            if (!fullName || !email || !phone || !address || !zipcode || !city) {
+                alert('Vul alle velden in!');
+                return;
+            }
+
+            // Get selected payment method
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+            // Show confirmation
+            alert(`Bestelling geplaatst! 🎉\n\nBetaalmethode: ${paymentMethod.toUpperCase()}\nTotaal: €${total},00\n\nJe ontvangt een bevestiging op ${email}\n\nBedankt voor je bestelling!`);
+
+            // Clear cart
+            cart = [];
+            localStorage.setItem('puzzleCart', JSON.stringify(cart));
+            updateCartCount();
+            closeCheckout();
+        }
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
         });
 
         // Buy button functionality
-        document.querySelectorAll('.buy-button').forEach(button => {
+        document.querySelectorAll('.buy-button').forEach((button, index) => {
             button.addEventListener('click', function() {
-                const productCard = this.closest('.product-card');
-                const productTitle = productCard.querySelector('.product-title').textContent;
-                const productPrice = productCard.querySelector('.product-price').textContent;
-                
-                alert(`${productTitle} toegevoegd aan winkelwagen!\n\nPrijs: ${productPrice}\n\nNeem contact met ons op om je bestelling af te ronden.`);
+                addToCart(index + 1);
             });
         });
+
+        // Close checkout on overlay click
+        document.getElementById('checkoutModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCheckout();
+            }
+        });
+
+        // Initialize
+        updateCartCount();
     </script>
 </body>
 </html>
